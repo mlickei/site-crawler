@@ -1,5 +1,5 @@
 {
-  "name": "mean",
+  "name": "crawler",
   "version": "1.0.0",
   "description": "",
   "main": "app/server/server.js",
@@ -19,6 +19,7 @@
     "express": "*",
     "express-session": "*",
     "http-server": "*",
+    "jsdom": "^11.0.0",
     "jsonwebtoken": "*",
     "knex": "*",
     "lodash": "*",
@@ -28,6 +29,7 @@
     "node-schedule": "*",
     "passport": "*",
     "passport-jwt": "*",
+    "request": "^2.81.0",
     "socket.io": "*"
   },
   "devDependencies": {
