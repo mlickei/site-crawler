@@ -1,0 +1,9 @@
+<button class="user-login-open fa fa-user-circle-o" ng:click="$ctrl.open()"></button>
+<modal heading="Log in" open="open" close="close">
+  <div class="form">
+    <input class="form-input" ng:model="$ctrl.name" placeholder="Username" type="text" required />
+    <input class="form-input" ng:model="$ctrl.password" placeholder="Password" type="password" required />
+    <button class="form-submit" ng:click="$ctrl.submit()">Log in</button>
+    <button class="form-button" ng:click="$ctrl.toggle()">Register</button>
+  </div>
+</modal>

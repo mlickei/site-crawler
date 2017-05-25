@@ -1,0 +1,13 @@
+{
+  "babelMapsPath":                    "",
+  "babelMapsAddUrl":                  false,
+  "babelSourcePath":                  "app/client/src",
+  "babelTranspilePath":               "app/client/build",
+  "createMap":                        false,
+  "createTargetDirectories":          true,
+  "createTranspiledCode":             true,
+  "disableWhenNoBabelrcFileInPath":   true,
+  "suppressSourcePathMessages":       true,
+  "suppressTranspileOnSaveMessages":  true,
+  "transpileOnSave":                  true
+}
