@@ -115,7 +115,7 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 	init();
 };
 
-Crawl('http://', 'jgrossman.vipa.tv', /jgrossman.vipa.tv/, 'http://jgrossman.vipa.tv/');
+Crawl('https://', 'db-testing-site.000webhostapp.com', /db-testing-site.000webhostapp.com/, 'https://db-testing-site.000webhostapp.com/');
 
 // module.exports = {
 // 	Module: Crawl
