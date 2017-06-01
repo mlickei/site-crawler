@@ -19,10 +19,8 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 						href = HyperLinkObj.href,
 						finalHref = `${protocol}${host}${cleanHref(href)}`;
 
-			// console.log(new Date(), parrallelQueueObj, processed, inProg, `${finalHref} Is it being processed, already in queue, or done? ${!(parrallelQueueObj[finalHref] == undefined && processed[finalHref] == undefined && inProg[finalHref] == undefined)}`);
 			if((hostname.match(hostnameReg) || hostname == null || hostname == '') && parrallelQueueObj[finalHref] == undefined && processed[finalHref] == undefined && inProg[finalHref] == undefined) {
 				addToQueue(finalHref);
-				// console.log(new Date(), `ADDED ${finalHref}`);
 			}
 
 			resolve();
@@ -30,16 +28,13 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 	}
 
 	async function processResults(results) {
-		// console.log(results.error, results.response);
 		const dom = new JSDOM(results.body),
 					links = dom.window.document.querySelectorAll('a');
 
 		if(links.length > 0)
 		{
 			for(let value of links.values()) {
-				// console.log(new Date(), `Working on ${results.response.request.path}`);
 				await processHyperLink(value);
-				// console.log(new Date(), `Finished ${results.response.request.path}`);
 			}
 		}
 	}
@@ -95,9 +90,7 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 	}
 
 	function processQueue() {
-		// console.log(new Date(), `Processing Queue, what's in it? ${reqQueue}`);
-		// console.log(Object.keys(inProg).length < maxReqs, Object.keys(processed).length < cutoff);
-		if(Object.keys(inProg).length < maxReqs && (Object.keys(processed).length < cutoff || cutoff < 0)) {
+		if(Object.keys(inProg).length < maxReqs && (Object.keys(processed).length < cutoff || cutoff < 0) && reqQueue.length > 0) {
 			awaitSendRequest().then(() => {
 				processQueue();
 			}).catch((data) => {
@@ -112,8 +105,6 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 				console.log(new Date(), processed[key]);
 			});
 		}
-
-		//Do nothing, we've maxed out our reqs
 	}
 
 	function init() {
@@ -124,7 +115,7 @@ let Crawl = function(protocol, host, hostnameReg, startingUrl, maxReqs = 1, cuto
 	init();
 };
 
-Crawl('https://', 'mvicente.com', /mvicente.com/, 'https://mvicente.com/');
+Crawl('http://', 'jgrossman.vipa.tv', /jgrossman.vipa.tv/, 'http://jgrossman.vipa.tv/');
 
 // module.exports = {
 // 	Module: Crawl
